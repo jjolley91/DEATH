@@ -15,4 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-## [version] - 2025-02-08
+## [1.0.1] - 2025-02-10
+
+### Added
+
+- V1.1 Folders for YARA, Snort, and Sigma rules
+- V1.1 Added YARA detection rule for Matanbuchus
+- V1.1 Added YARA detection rule for QBOT
