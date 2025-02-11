@@ -15,10 +15,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-## [1.0.1] - 2025-02-10
+## [1.0.1] - 2025-02-11
 
 ### Added
 
 - V1.1 Folders for YARA, Snort, and Sigma rules
 - V1.1 Added YARA detection rule for Matanbuchus
 - V1.1 Added YARA detection rule for QBOT
+- V1.1 Added YARA detection rule for AsyncRAT
+- V1.1 Added YARA detection rule for DarkGate
+- V1.1 Added YARA detection rule for Latrodectus
+- V1.1 Added YARA detection rule for Pikabot
+- V1.1 Added YARA detection rule for IcedID

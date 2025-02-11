@@ -3,7 +3,7 @@ import "pe"
 rule MAL_WIN_Trojan_Qbot
 {
     meta:
-        description = "Detects qbot trojan"
+        description = "Detects qbot trojan attempting to emulate a GIMP dll"
         author="James Jolley"
         date="2024-04-09"
         reference = "https://redcanary.com/threat-detection-report/threats/qbot/"
