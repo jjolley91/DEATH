@@ -11,8 +11,7 @@ date: 2025-02-12
 tags:
     - attack.execution
     - attack.t1218.005
-    - attack.defense-evasion
-    - attack.initial-access 
+    - attack.defense-evasion 
 logsource:
     product: Windows
     category: process_creation
