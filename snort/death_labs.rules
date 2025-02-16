@@ -1,0 +1,73 @@
+# Mirai botnet malware alert
+
+# Detecting on a DNS request for a known malicous domain associated with Mirai
+
+alert udp $HOME_NET any -> any 53 (msg: "DNS Request - Rooty.cc, possible Mirai traffic"; content:"|05|rooty|02|cc|00"; flowbits:set,rooty;sid:1000001;)
+
+alert tcp $HOME_NET any -> any 80 (msg: "Possible Mirai botnet traffic"; pcre:"/|7F|ELF|01/"; pcre:"/|20|rootsenpai|00|/";flowbits:isset,rooty;flowbits:unset,rooty;sid:1000002)
+
+
+
+# Qbot trojan alert
+
+# Alert on bogus data in the tls certificate associated with qbot trojan
+
+alert tcp any 443 -> $HOME_NET any (msg:"Invalid certificate data detected - Possible Qbot activity"; content:"Dqimuc Saoamaf Sngiantob Kjujtk"; content:"fscej.org"; sid:1000003)
+
+
+
+# Astaroth malware alert
+
+# Alert generates based on a visit to one of the associated malicious domains, followed by the download of a windows executable over port 80.
+
+# Note that these seem to be DGA domains, which could change easily.
+
+
+alert udp $HOME_NET any -> any 53 (msg: "DNS Request possible Astaroth traffic"; pcre:"/(assessirianricoadvocacia|creditcardflyers|sophiaemarlibuffetme|felipeemarlimarketingl|clus)|00/i";flowbits:set,astaroth;sid:1000004;)
+
+alert tcp any 80 -> $HOME_NET any (msg:"Astaroth http traffic detected potential malicious executable";flowbits:isset,astaroth; flowbits:unset,astaroth; content:"program cannot be run in DOS mode"; sid:1000005;)
+
+
+
+# IcedID
+
+# 
+
+#
+
+alert udp $HOME_NET any -> any 53 
+(
+	msg:"Potential IcedId traffic detected, domains associated with C2 and Cobalt strike. Known invalid tls certificates also detected";
+	pcre:"/(alohasockstaina|abegelkunic|rehazosipa|wafefuvko|ultomductingbig|wiandukachelly)|00/i";
+	flowbits:set,icedid_cert;
+	sid:1000001;
+)
+
+alert tcp any 443 -> $HOME_NET any
+(
+	msg:"Potential C2 traffic, invalid certificate data detected.";
+	flowbits:isset,icedid_cert;
+	flowbits:unset,icedid_cert;
+	content:"Internet Widgits Pty Ltd";
+	content:"Some-State";
+	content:"localhost";
+	sid:1000006;
+)
+
+
+alert tcp $HOME_NET any -> any 80
+(
+	msg:"Potential Cobalt Strike payload associated with IcedId";
+	pcre:"/GET \/download\/sys\.exe/i";
+	sid:1000007;
+)
+
+alert file
+(
+	msg:"any exe";
+	flowbits:isset,executable;
+	flowbits:unset,executable;
+	file_data;
+    content:"| 4D 5A |", depth 2, offset 0;
+	sid:1000008;
+)

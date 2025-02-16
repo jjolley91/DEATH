@@ -1,0 +1,50 @@
+title: Suspicious Shell Invoked via Awk
+id: 20e999e6-50e9-447f-8065-cfbb26f00db0
+status: experimental
+description: Detects execution of awk to invoke a shell or reverse shell.
+references:
+    - https://gtfobins.github.io/gtfobins/awk/
+author: James Jolley
+date: 2025-02-12
+tags:
+    - attack.execution
+    - attack.t1059.004
+    - attack.lateral-movement
+logsource:
+    product: linux
+    category: process_creation
+detection:
+    bin:
+        Image|endswith: '/awk'
+    cmdline_shell:
+        Commandline|contains:
+            - 'BEGIN'
+            - 'system'
+    bin_sudo:
+        CommandLine|contains: 'sudo'
+    cmdline_bin:
+        CommandLine|contains:
+            - '/bin/sh'
+            - '/bin/bash'
+            - '/bin/zsh'
+            - '/bin/fish'
+            - '/bin/ksh'
+            - '/bin/dash'
+            - '/bin/tcsh'
+            - '/bin/mksh'
+            - '/bin/yash'
+            - '/bin/xonsh'
+    cmdline_rev_shell:
+        CommandLine|contains:
+            - '/dev/tcp'
+            - '/dev/udp'
+            - '/inet/tcp'
+    rev_shell:
+        CommandLine|contains:
+            - 'while'
+            - 'getline'
+            - 'close'
+    condition: bin and cmdline_shell and ((bin_sudo and cmdline_bin) or (cmdline_bin) or (bin_sudo and cmdline_rev_shell and rev_shell) or (cmdline_rev_shell and rev_shell))
+falsepositives:
+    - Unknown
+level: high
