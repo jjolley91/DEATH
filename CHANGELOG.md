@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - v1.0.1 Added Scripts folder 
 - v1.0.1 Added post-process python script to ensure correct fields and rule formatting.
 - v1.0.1 Added Workflow to automatically validate Sigma rules when changes are pushed to a branch that isnt main or a PR with base main is opened or updated.
+- v1.0.1 Added Workflow to convert into ELK-compliant ndjson file and push rules to prod  when new release tag is pushed.
 
 ### Changed
 
