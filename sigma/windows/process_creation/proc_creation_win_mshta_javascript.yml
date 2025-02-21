@@ -1,4 +1,4 @@
-title: Suspicious Mshta execution using VBScript/JavaScript- LOLBAS
+title: Suspicious Mshta execution using VBScript/JavaScript LOLBAS
 id: 15f043b7-0e35-4c8d-9450-536da6f8c6d7
 status: experimental
 description: Detects suspicious usage of mshta.exe which can be indicative of LOLBAS techniques for executing malicious scripts.

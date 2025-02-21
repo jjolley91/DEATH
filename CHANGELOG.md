@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-## [1.0.1] - 2025-02-11
+## [1.0.1] - 2025-02-16
 
 ### Added
 
@@ -38,7 +38,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - v1.0.1 Added Workflow to automatically validate Sigma rules when changes are pushed to a branch that isnt main or a PR with base main is opened or updated.
 - v1.0.1 Added Workflow to convert into ELK-compliant ndjson file and push rules to prod  when new release tag is pushed.
 
-### Changed
-
-- Corrected version mismatch inside CHANGELOG.md
-- Updated Sigma_template to include a blank rule template for reference
