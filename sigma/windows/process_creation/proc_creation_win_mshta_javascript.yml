@@ -35,7 +35,7 @@ detection:
     selection_language:
         CommandLine|contains:
             - 'vbscript:createobject'
-            - 'javascript'      
+            - 'javascript'    
     filter_img:
         - Image|startswith:
             - 'C:\Windows\System32\'
